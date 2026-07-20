@@ -30,7 +30,7 @@ export default function ClassroomAddPageContainer() {
       setLoading(true);
 
       await axios.post(
-    "http://127.0.0.1:8000/classroom_Added",
+    `${baseUrl}/classroom_Added`,
     {
         classroom_name: data.classroom_name, 
         teacherId: data.teacherId,           

@@ -12,6 +12,8 @@ import { Checkbox } from "@/components/ui/checkbox";
 import { Input } from "@/components/ui/input";
 import axios from "axios";
 
+const baseUrl = process.env.NEXT_PUBLIC_BASE_URL;
+
 interface Student {
   _id: string;
   name: string;
@@ -48,8 +50,8 @@ export default function ClassroomDialog({
         setLoading(true);
 
         const [studentsRes, classroomRes] = await Promise.all([
-          axios.get("http://127.0.0.1:8000/Student"),
-          axios.get(`http://127.0.0.1:8000/classroom/${classroomId}`),
+          axios.get(`${baseUrl}/Student`),
+          axios.get(`${baseUrl}/classroom/${classroomId}`),
         ]);
 
         setStudents(studentsRes.data);
@@ -117,7 +119,7 @@ export default function ClassroomDialog({
       setAdding(true);
 
       await axios.post(
-        `http://127.0.0.1:8000/classroom/${classroomId}`,
+        `${baseUrl}/classroom/${classroomId}`,
         { student_ids: selectedStudents }
       );
 
